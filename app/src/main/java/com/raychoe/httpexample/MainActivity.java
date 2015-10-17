@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         new InfoLoadTask().execute();
     }
 
-    public void bulkInsert(List<Hanok> datas) {
-
-    }
 
     class InfoLoadTask extends AsyncTask<Void, Void, List<Hanok>> {
 
@@ -81,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         ));
 
                 mFacade.bulkInsert(hanokList);
+                mFacade.select();
 
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import com.raychoe.httpexample.Hanok;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by Ray Choe on 2015-10-17.
  */
 public class HanokStatusFacade {
+    private static final String TAG = HanokStatusFacade.class.getSimpleName();
     private DBHelper mHelper;
 
     public HanokStatusFacade(Context context) {
@@ -79,13 +81,23 @@ public class HanokStatusFacade {
         }
     }
 
-    public Cursor select() {
+    public void select() {
         Cursor cursor = null;
         SQLiteDatabase db = null;
 
         db = mHelper.getWritableDatabase();
+        cursor = db.query(HanokStatusContract.HanokEntry.TABLE_NAME, null, null, null, null, null, null);
+
+        while(cursor.moveToNext()) {
+            String num = cursor.getString(cursor.getColumnIndexOrThrow(HanokStatusContract.HanokEntry.COLUMN_NAME_HANOKNUM));
+            String addr = cursor.getString(cursor.getColumnIndexOrThrow(HanokStatusContract.HanokEntry.COLUMN_NAME_ADDR));
+            String buildArea = cursor.getString(cursor.getColumnIndexOrThrow(HanokStatusContract.HanokEntry.COLUMN_NAME_BUILDAREA));
+            String pllotage = cursor.getString(cursor.getColumnIndexOrThrow(HanokStatusContract.HanokEntry.COLUMN_NAME_PLLOTAGE));
+            String total = cursor.getString(cursor.getColumnIndexOrThrow(HanokStatusContract.HanokEntry.COLUMN_NAME_TOTAR));
+            Log.d(TAG, "등록번호 : " + num + " 주소 : " + addr + " buildArea : " + buildArea + " pllotage : " + pllotage + " total : " + total);
+        }
 
 
-        return cursor;
+
     }
 }
