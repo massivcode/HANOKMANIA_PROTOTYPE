@@ -1,4 +1,4 @@
-package com.raychoe.httpexample.Utils;
+package com.raychoe.httpexample.HanokStatus;
 
 import android.provider.BaseColumns;
 
@@ -10,7 +10,7 @@ public class HanokStatusContract {
     public HanokStatusContract() {
     }
 
-    public static abstract class HanokEntry implements BaseColumns {
+    public static abstract class HanokStatusEntry implements BaseColumns {
         public static final String TABLE_NAME = "HanokStatus";
         public static final String COLUMN_NAME_HANOKNUM = "hanoknum";
         public static final String COLUMN_NAME_ADDR = "addr";
